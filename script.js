@@ -205,13 +205,11 @@ document.addEventListener('DOMContentLoaded', function() {
         type: 'doughnut',
         data: {
             const monGraphique = new Chart(ctx, {
-    // ...
     data: {
         labels: ['Systèmes & Virtualisation', 'Réseaux & Infra', 'Cybersécurité', 'Support & Veille'],
         datasets: [{
             data: [35, 30, 20, 15],
             backgroundColor: ['#BDA18A', '#3498db', '#e74c3c', '#2ecc71'], // Marron, Bleu, Rouge, Vert
-// ...
                 hoverOffset: 30,
                 borderWidth: 2,
                 borderColor: '#ffffff'
