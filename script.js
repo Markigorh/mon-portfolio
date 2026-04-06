@@ -1,9 +1,4 @@
-// 1. Charger le menu automatiquement
-fetch('components/menu.html')
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('nav-placeholder').innerHTML = data;
-    });
+
 
 // 2. Animation de fond (Cercles flottants)
 const canvas = document.getElementById('bg-canvas');
