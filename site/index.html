@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet Final BTS SIO</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="style3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<div id="modal-competence" class="modal">
+    <div class="modal-contenu">
+        <span class="bouton-fermer">&times;</span>
+        <div id="modal-corps">
+        </div>
+    </div>
+</div>
+<body>
+    <nav>
+        
+    <div class="logo">Mon Portfolio SISR</div>
+    <ul>
+    <li><a href="#accueil">Accueil</a></li>
+    <li><a href="#presentation">Parcours</a></li>
+    <li><a href="#competences">Compétences</a></li>
+    <li><a href="#projets">Projets (E4)</a></li>
+    <li><a href="#veille">Veille (E6)</a></li>
+    <li><a href="#contact">Contact</a></li>
+    
+    </ul>
+</nav>
+    <canvas id="bg-canvas"></canvas>
+
+    <div id="nav-placeholder"></div>
+
+    <main>
+      <section id="accueil">
+            <div class="accueil-container">
+                <div class="accueil-texte">
+                    <h1>Bienvenue sur mon Projet Final</h1>
+                    <p>Spécialité SISR (Solutions d'Infrastructure, Systèmes et Réseaux)</p>
+                </div>
+                
+                <div class="accueil-photo-wrapper">
+                    <img src="samurai-fantasy-art-2139609-wallhere.com.jpg" alt="Markush Ihor" class="photo-ronde">
+                </div>
+            </div>
+        </section>
+<section id="presentation">
+    <div class="pres-grid">
+        
+        <div class="pres-header">
+            <h2 data-aos="fade-down" data-aos-delay="100">Markush Ihor</h2>
+            
+            <p class="subtitle typewriter">Étudiant BTS SIO - Option SISR</p>
+        </div>
+
+        <div class="pres-sidebar">
+            <div class="info-card">
+                <div class="info-item animate-item" style="--delay: 1;">
+                    <i class="fas fa-birthday-cake"></i>
+                    <span>20 ans</span>
+                </div>
+                <div class="info-item animate-item" style="--delay: 2;">
+                    <i class="fas fa-car"></i>
+                    <span>Permis B (Véhiculé)</span>
+                </div>
+                <div class="info-item animate-item" style="--delay: 3;">
+                    <i class="fas fa-language"></i>
+                    <span>Français / Anglais Tech</span>
+                </div>
+                <div class="info-item animate-item" style="--delay: 4;">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Bac Pro SN RISC</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="pres-main">
+            <h3 data-aos="fade-right" data-aos-delay="300">À propos de mon profil</h3>
+            
+            <div class="animate-text-block">
+                <p>
+                    Passionné par l'informatique, je me suis orienté vers le 
+                    <strong>BTS SIO SISR</strong> pour maîtriser les infrastructures réseaux. 
+                    Mon objectif : devenir un expert en administration et cybersécurité.
+                </p>
+                <p>
+                    Ma force réside dans ma curiosité pour l'<strong>automatisation</strong> 
+                    et ma capacité à m'adapter aux nouvelles technologies.
+                </p>
+            </div>
+        </div>
+
+    </div>   
+</section>
+<section id="etablissement-pro">
+    <h2 class="titre-section tech-title" data-aos="fade-down">Hauts Lieux de Formation</h2>
+    
+    
+    <div class="ecole-container" data-aos="flip-up" data-aos-duration="1000">
+        
+        <div class="ecole-visual">
+            <div class="visual-overlay"></div>
+        </div>
+
+        <div class="ecole-content-pro">
+            <div class="status-bar">
+                <span class="status-dot online"></span>
+                <span class="status-text">FORMATION ACTIVE</span>
+            </div>
+            
+            <h3 class="ecole-name">Lycée Marie Curie</h3>
+            <p class="ecole-filiere">Diplôme Visé : BTS SIO (SISR)</p>
+            
+            <p class="ecole-description-pro">
+                Acquisition de compétences critiques en administration systèmes, 
+                architecture réseaux sécurisés et supervision d'infrastructures. 
+                Environnement d'apprentissage basé sur des équipements industriels 
+                (Cisco, Dell, Stormshield).
+            </p>
+            <div class="ecole-action">
+                <span class="location-pro"><i class="fas fa-map-marker-alt"></i> Marseille Bouche du Rhone</span>
+                <a href="https://www.site.ac-aix-marseille.fr/lyc-curie/spip/?lang=fr" target="_blank" class="btn-tech">
+                    Accéder au Portail <i class="fas fa-terminal">Click</i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="parcours">
+    <h2 class="titre-section" data-aos="fade-down">Mon Parcours</h2>
+    
+    <div class="timeline">
+        <div class="timeline-item" data-aos="fade-right">
+            <div class="timeline-date">2024 - Présent</div>
+            <div class="timeline-content">
+                <h3>BTS SIO Option SISR</h3>
+                <p>Apprentissage de l'administration système et réseau, cybersécurité et automatisation (Infrastructure as Code).</p>
+                <span class="badge-ecole">Lycée Marie Curie</span>
+            </div>
+        </div>
+
+        <div class="timeline-item" data-aos="fade-left">
+            <div class="timeline-date">2021 - 2024</div>
+            <div class="timeline-content">
+                <h3>Baccalauréat Bac Pro RISC</h3>
+                <p>Obtention du bac avec mention bien . Initiation aux bases de l'informatique et du numérique.</p>
+                <span class="badge-entreprise">Lycée Ampere</span>
+            </div>
+        </div>
+    </div>
+</section>
+     <section id="etablissement-pro">
+    <div class="container-pres" data-aos="fade-up">
+        <h2 class="titre-section">À propos de moi</h2>
+        <div class="pres-content">
+            <div class="pres-text">
+                <p>
+                    Passionné par l'informatique depuis toujours, je me suis naturellement orienté vers le 
+                    <strong>BTS SIO option SISR</strong> pour transformer cette passion en expertise technique. 
+                    Mon objectif est de devenir un administrateur systèmes et réseaux capable de concevoir 
+                    et sécuriser des infrastructures modernes.
+                </p>
+                <p>
+                    Curieux et rigoureux, j'accorde une importance particulière à la 
+                    <strong>veille technologique</strong> et à l'<strong>automatisation</strong> (Ansible, Terraform), 
+                    car je suis convaincu que l'avenir de l'infrastructure réside dans le code et l'agilité.
+                </p>
+                <div class="pres-highlights">
+                    <span><i class="fas fa-check"></i> Autonome</span>
+                    <span><i class="fas fa-check"></i> Esprit d'analyse</span>
+                    <span><i class="fas fa-check"></i> Passionné Tech</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+      <section id="competences">
+    <h2 class="titre-section" data-aos="fade-down">Mes compétences
+    </h2>
+    
+    <div class="grille-competences">
+        <div class="carte-comp" data-cat="reseau" data-aos="fade-up" data-aos-delay="100">
+            <div class="icone-cat">🌐</div>
+            <h3>Infrastructures & Réseaux</h3>
+            <ul>
+                <li data-statut="Maîtrisé" 
+            data-desc="Configuration de VLANs, routage OSPF et sécurisation des ports sur switchs Catalyst.">
+    Architecture Cisco (VLAN, Routage) </li>
+                    <li data-statut="Avancé" 
+            data-desc="Gestion d'Active Directory, mise en place de GPO et déploiement de rôles DNS/DHCP.">
+            Windows Server (AD, GPO)
+        </li>
+
+        <li data-statut="En cours" 
+            data-desc="Mise en place de supervision SNMP et agents Zabbix pour le monitoring d'infrastructure.">
+            Monitoring (Zabbix, SNMP)
+        </li>
+        <li data-statut="Maîtrisé" 
+        data-desc="Configuration de serveurs DNS (zones directes/inverses), DHCP (étendues, réservations) et sécurisation des accès distants via SSH.">
+        Services Réseaux (DNS, DHCP, SSH)
+    </li>
+            </ul>
+        </div>
+
+        <div class="carte-comp" data-cat="systeme" data-aos="fade-up" data-aos-delay="300">
+            <div class="icone-cat">🖥️</div>
+            <h3>Systèmes & Virtualisation</h3>
+            <ul>
+                <li>Administration Linux (Debian)</li>
+                <li data-statut="Maîtrisé" 
+    data-desc="Mise en place et gestion de clusters de virtualisation, création de snapshots, gestion des réseaux virtuels et du stockage.">
+    Virtualisation (VMware, Proxmox)
+</li>
+
+<li data-statut="En cours" 
+    data-desc="Automatisation de tâches administratives via scripts PowerShell (gestion AD) et Bash (sauvegardes automatiques).">
+    Scripting (PowerShell, Bash)
+</li>
+            </ul>
+        </div>
+
+        <div class="carte-comp" data-cat="security" data-aos="fade-up" data-aos-delay="500">
+            <div class="icone-cat">🛡️</div>
+            <h3>Cybersécurité</h3>
+            <ul>
+                <li data-statut="Avancé" 
+                    data-desc="Configuration de règles de filtrage, NAT/PAT, et mise en place de zones démilitarisées (DMZ) sur PfSense et solutions Fortinet.">
+                        Pare-feu (PfSense, Fortinet)
+                </li>
+
+                <li data-statut="Opérationnel" 
+                    data-desc="Interconnexion de sites via tunnels IPsec et déploiement de solutions de télétravail sécurisées avec OpenVPN.">
+                    VPN (IPsec, OpenVPN)
+                </li>
+
+                <li data-statut="Opérationnel" 
+                    data-desc="Capture et analyse de paquets pour le diagnostic réseau et la détection d'anomalies ou de protocoles non sécurisés.">
+                    Analyse de trames (Wireshark)
+                </li>
+
+                <li data-statut="En cours" 
+                    data-desc="Sécurisation des flux web via certificats SSL/TLS et mise en place de protocoles de chiffrement pour les services critiques.">
+                    Sécurisation des accès (SSL)
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+<section id="projets">
+    <h2 class="titre-section">Mes Projets & Réalisations</h2>
+    
+    <div class="grille-projets">
+        
+        <div class="carte-projet">
+            <div class="projet-image">
+                <div class="projet-overlay">
+                    <span class="badge-categorie">Infrastructure</span>
+                </div>
+                <i class="fas fa-server"></i> </div>
+            <div class="projet-info">
+                <h3>Déploiement Active Directory</h3>
+                <p>Mise en place d'un domaine Windows Server 2022 avec gestion des GPO et serveurs DNS/DHCP redondants.</p>
+                <div class="projet-tags">
+                    <span>Windows Server</span>
+                    <span>GPO</span>
+                    <span>DNS</span>
+                </div>
+                <a href="Déploiement-Active-Directory.pdf" class="btn-projet">Voir la documentation <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <div class="carte-projet">
+            <div class="projet-image">
+                <div class="projet-overlay">
+                    <span class="badge-categorie">Réseau</span>
+                </div>
+                <i class="fas fa-network-wired"></i>
+            </div>
+            <div class="projet-info">
+                <h3>Segmentation VLAN & Routage</h3>
+                <p>Architecture réseau sécurisée avec segmentation par VLANs et filtrage par ACL sur équipements Cisco.</p>
+                <div class="projet-tags">
+                    <span>Cisco</span>
+                    <span>VLAN</span>
+                    <span>ACL</span>
+                </div>
+                <a href="Documentation.pdf" class="btn-projet">Détails techniques <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <div class="carte-projet">
+            <div class="projet-image">
+                <div class="projet-overlay">
+                    <span class="badge-categorie">Sécurité</span>
+                </div>
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <div class="projet-info">
+                <h3>Installation Pare-feu pfSense</h3>
+                <p>Mise en œuvre d'un Firewall pfSense avec VPN nomade OpenVPN et filtrage de contenu (Squid).</p>
+                <div class="projet-tags">
+                    <span>pfSense</span>
+                    <span>VPN</span>
+                    <span>Cyber</span>
+                </div>
+                <a href="Déploiement-d'un-Firewall.pdf" class="btn-projet">Étude de cas <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+    </div>
+</section>
+<section id="infrastructure">
+    <h2 class="titre-section">Architecture Réseau de l'Entreprise</h2>
+    
+    <div class="infra-container">
+        <div class="infra-visual" data-aos="zoom-in">
+            <img src="Copilot_20260407_002314.png" alt="Schéma Réseau SISR" class="img-fluid" id="schema-img">
+            <div class="zoom-overlay"><i class="fas fa-search-plus"></i> Cliquer pour agrandir</div>
+        </div>
+
+        <div class="infra-details" data-aos="fade-left">
+            <h3>Topologie & Sécurisation</h3>
+            <p>Analyse de la topologie en place pour comprendre l'interconnexion entre le cœur de réseau et les différents services.</p>
+            
+            <div class="infra-points">
+                <div class="point-tech">
+                    <i class="fas fa-layer-group"></i>
+                    <div>
+                        <strong>Segmentation VLAN :</strong>
+                        <p>Isolation des flux Administration, Data, et VoIP pour limiter la surface d'attaque.</p>
+                    </div>
+                </div>
+
+                <div class="point-tech">
+                    <i class="fas fa-shield-virus"></i>
+                    <div>
+                        <strong>Périmètre de Sécurité :</strong>
+                        <p>Double filtrage via pfSense et mise en place d'une DMZ pour les serveurs exposés.</p>
+                    </div>
+                </div>
+
+                <div class="point-tech">
+                    <i class="fas fa-hdd"></i>
+                    <div>
+                        <strong>Haute Disponibilité :</strong>
+                        <p>Virtualisation sous Proxmox avec réplication des données et backups automatisés.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="conclusion">
+    <div class="conclusion-content" data-aos="zoom-in">
+        <h2>Intéressé par mon profil SISR ?</h2>
+        <p>Retrouvez le détail de mes missions et compétences validées ci-dessous.</p>
+        
+        <div class="download-group">
+            <a href="2025-CV-Resume.pdf" class="btn-download primary" download data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-file-pdf"></i> Mon CV (PDF)
+            </a>
+            <a href="fichiers/Tableau_Synthese.pdf" class="btn-download secondary" download data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-table"></i> Tableau de Synthèse E4
+            </a>
+            <a href="https://github.com/search?q=markigor&type=repositories" target="_blank" class="btn-download github" data-aos="fade-up" data-aos-delay="400">
+                <i class="fab fa-github"></i> Mes Projets (GitHub)
+            </a>
+        </div>
+    </div>
+</section>
+
+<button id="backToTop" title="Retour en haut">
+    <i class="fas fa-arrow-up"></i>
+</button>
+<section id="veille">
+    <h2 class="titre-section" data-aos="fade-down">Veille Technologique</h2>
+    <div class="veille-container">
+        <div class="veille-info" data-aos="fade-right" data-aos-delay="200">
+            <h3>Thème : L'automatisation des processus d'infrastructure</h3>
+            <p>Ma veille porte sur les outils et méthodes permettant d'automatiser le déploiement, la configuration et la gestion des parcs informatiques et des réseaux...</p>
+            
+            <div class="outils-veille">
+                <h4>Mes outils de veille :</h4>
+                <div class="badges-outils">
+                    <span data-aos="zoom-in" data-aos-delay="300">Flux RSS (Feedly)</span>
+                    <span data-aos="zoom-in" data-aos-delay="400">Reddit (r/sysadmin)</span>
+                    <span data-aos="zoom-in" data-aos-delay="500">X (Twitter Tech)</span>
+                    <span data-aos="zoom-in" data-aos-delay="600">IT-Connect</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="veille-articles" data-aos="fade-left" data-aos-delay="400">
+            <h4>Sujets surveillés récemment :</h4>
+            <div class="article-item" data-aos="fade-up" data-aos-delay="500">
+                <h5>Ansible & Terraform</h5>
+                <p>L'essor de l'Infrastructure as Code pour déployer des serveurs en quelques secondes.</p>
+            </div>
+            <div class="article-item" data-aos="fade-up" data-aos-delay="600">
+                <h5>PowerShell & Bash</h5>
+                <p>Optimisation des tâches d'administration Active Directory via scripts.</p>
+            </div>
+            <div class="article-item" data-aos="fade-up" data-aos-delay="700">
+                <h5>Docker & Conteneurisation</h5>
+                <p>L'automatisation du déploiement d'applications isolées.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="graphique-competences">
+    <h2 class="titre-section" data-aos="fade-down">Répartition de mes Compétences</h2>
+    <div class="graphique-container-pro">
+        <div class="canvas-wrapper" data-aos="zoom-out" data-aos-delay="200">
+            <canvas id="monGraphique"></canvas>
+        </div>
+
+        <div id="details-graph" class="details-graph-box" data-aos="fade-up" data-aos-delay="400">
+            <h3 id="details-titre">Cliquez sur une section</h3>
+            <p id="details-texte">Sélectionnez un domaine sur le graphique pour voir le détail.</p>
+        </div>
+    </div>
+</section>
+<section id="contact">
+    <h2 class="titre-section" data-aos="fade-down">Me Contacter</h2>
+    
+    <div class="contact-container">
+        
+        <div class="contact-info" data-aos="fade-right" data-aos-delay="200">
+            <h3>Restons en contact</h3>
+            <p>Besoin d'un alternant ou d'un collaborateur ? Mon profil vous intéresse ? Contactez-moi directement via ces plateformes ou le formulaire :</p>
+            
+            <div class="contact-buttons">
+                <a href="mailto:ton.email@exemple.com" class="btn-contact mail" data-aos="zoom-in" data-aos-delay="400">
+                    <i class="fas fa-envelope"></i> Envoyer un Email
+                </a>
+                <a href="https://linkedin.com/in/ton-profil" target="_blank" class="btn-contact linkedin" data-aos="zoom-in" data-aos-delay="500">
+                    <i class="fab fa-linkedin"></i> Mon Profil LinkedIn
+                </a>
+                <div class="location-badge" data-aos="fade-up" data-aos-delay="600">
+                    <i class="fas fa-map-marker-alt"></i> Basé à [Marseille]
+                </div>
+            </div>
+        </div>
+
+        <form class="contact-form" data-aos="fade-left" data-aos-delay="400">
+            <div class="form-group" data-aos="fade-up" data-aos-delay="500">
+                <input type="text" placeholder="Votre Nom" required>
+            </div>
+            <div class="form-group" data-aos="fade-up" data-aos-delay="600">
+                <input type="email" placeholder="Votre Email" required>
+            </div>
+            <div class="form-group" data-aos="fade-up" data-aos-delay="700">
+                <input type="text" placeholder="Sujet" required>
+            </div>
+            <div class="form-group" data-aos="fade-up" data-aos-delay="800">
+                <textarea placeholder="Votre message..." rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn-submit" data-aos="zoom-in" data-aos-delay="900">
+                Envoyer le message
+            </button>
+        </form>
+
+    </div>
+</section>
+
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+   <script>
+    AOS.init({
+        duration: 500,
+        easing: 'ease-out-cubic',
+        
+        // --- C'EST ICI QUE ÇA CHANGE ---
+        once: false, // 'false' signifie que l'animation se rejoue à chaque passage
+        
+        mirror: true, // Cette option permet de rejouer l'animation quand on remonte (scroll up)
+        offset: 20, 
+    });
+</script>
+</body>
+</html>
