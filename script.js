@@ -1,286 +1,160 @@
-
-// 2. Animation de fond (Cercles flottants)
+/* ==========================================
+   1. ANIMATION DE FOND (CANVAS)
+   ========================================== */
 const canvas = document.getElementById('bg-canvas');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    const colors = ['#D5CABC', '#E8D5CC', '#BDA18A'];
 
-let particles = [];
-const colors = ['#D5CABC', '#E8D5CC', '#BDA18A'];
+    const resize = () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    };
+    window.addEventListener('resize', resize);
+    resize();
 
-class Particle {
-    constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 5 + 1;
-        this.speedX = Math.random() * 1 - 0.5;
-        this.speedY = Math.random() * 1 - 0.5;
-        this.color = colors[Math.floor(Math.random() * colors.length)];
+    class Particle {
+        constructor() {
+            this.init();
+        }
+        init() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 5 + 1;
+            this.speedX = Math.random() * 1 - 0.5;
+            this.speedY = Math.random() * 1 - 0.5;
+            this.color = colors[Math.floor(Math.random() * colors.length)];
+        }
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
+            if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+        }
+        draw() {
+            ctx.fillStyle = this.color;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
     }
-    update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        if (this.x > canvas.width) this.x = 0;
-        if (this.x < 0) this.x = canvas.width;
-        if (this.y > canvas.height) this.y = 0;
-        if (this.y < 0) this.y = canvas.height;
+
+    for (let i = 0; i < 50; i++) particles.push(new Particle());
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => { p.update(); p.draw(); });
+        requestAnimationFrame(animate);
     }
-    draw() {
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-    }
+    animate();
 }
 
-function init() {
-    for (let i = 0; i < 50; i++) {
-        particles.push(new Particle());
-    }
-}
-
-function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => {
-        p.update();
-        p.draw();
-    });
-    requestAnimationFrame(animate);
-}
-
-init();
-animate();
-
-
-// Sélection des éléments
+/* ==========================================
+   2. GESTION DES MODALES (COMPÉTENCES)
+   ========================================== */
 const modal = document.getElementById("modal-competence");
 const modalCorps = document.getElementById("modal-corps");
 const btnFermer = document.querySelector(".bouton-fermer");
 
-// On ajoute l'événement clic sur chaque CARTE
-document.querySelectorAll('.carte-comp').forEach(carte => {
-    carte.style.cursor = "zoom-in"; // Curseur spécial pour indiquer le clic
-    
-    carte.addEventListener('click', function() {
-        // On copie le HTML de la carte dans la modale
-        modalCorps.innerHTML = this.innerHTML;
-        // On affiche la modale
-        modal.style.display = "block";
-        // On cache le curseur de zoom à l'intérieur
-        modalCorps.querySelector('.icone-cat').style.fontSize = "5rem";
-    });
-});
-
-// Fermer au clic sur la croix
-btnFermer.onclick = function() {
-    modal.style.display = "none";
-}
-
-// Fermer si on clique n'importe où en dehors de la fenêtre blanche
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-
-// Telecharge un fichier des competence 
-
-document.querySelectorAll('.carte-comp').forEach(carte => {
-    carte.addEventListener('click', function() {
-        const titre = this.querySelector('h3').innerText;
-        const icone = this.querySelector('.icone-cat').innerText;
-        const items = this.querySelectorAll('li');
-
-        // Construire le nouveau contenu avec barres
-
-        let htmlContenu = `<div style="font-size: 4rem; margin-bottom: 10px;">${icone}</div>`;
-        htmlContenu += `<h3>${titre}</h3><ul>`;
-
-        items.forEach(item => {
-            const niveau = item.getAttribute('data-level');
-            let texteNiveau = "Débutant";
-            if(niveau > 40) texteNiveau = "Intermédiaire";
-            if(niveau > 75) texteNiveau = "Maîtrisé";
-
-            htmlContenu += `
-                <li style="margin-bottom:20px; border:none; background:none;">
-                    <strong>${item.innerText}</strong>
-                    <span class="label-niveau">${texteNiveau} - ${niveau}%</span>
-                    <div class="container-niveau">
-                        <div class="barre-progression" style="width: ${niveau}%"></div>
-                    </div>
-                </li>`;
-        });
-
-        htmlContenu += `</ul>`;
-        
-        modalCorps.innerHTML = htmlContenu;
-        modal.style.display = "block";
-    });
-});
-document.querySelectorAll('.carte-comp').forEach(carte => {
-    
-    // 1. GESTION DU CLIC SUR LA CARTE ENTIÈRE (Tout afficher)
-    carte.addEventListener('click', function(e) {
-        const titre = this.querySelector('h3').innerText;
-        const icone = this.querySelector('.icone-cat').innerText;
-        const items = this.querySelectorAll('li');
-
-        genererModale(titre, icone, items);
-    });
-
-    // 2. GESTION DU CLIC SUR UNE LIGNE PRÉCISE (Une seule compétence)
-    const lignes = carte.querySelectorAll('li');
-    lignes.forEach(li => {
-        li.addEventListener('click', function(e) {
-            e.stopPropagation(); // EMPÊCHE de déclencher le clic sur la carte entière
-            
-            const titreCarte = carte.querySelector('h3').innerText;
-            const iconeCarte = carte.querySelector('.icone-cat').innerText;
-            
-            // On crée un tableau avec UN SEUL élément pour réutiliser la fonction
-            const itemUnique = [this]; 
-            
-            genererModale(titreCarte, iconeCarte, itemUnique);
-        });
-    });
-});
-
 function genererModale(titre, icone, items) {
     let htmlContenu = `
-        <div style="font-size: 3rem; text-align:center;">${icone}</div>
-        <h3 style="border-bottom: 2px solid var(--color-accent); padding-bottom:10px;">${titre}</h3>
-        <div style="text-align:left; width:100%;">`;
+        <div style="font-size: 3.5rem; text-align:center; margin-bottom:10px;">${icone}</div>
+        <h3 style="border-bottom: 2px solid #BDA18A; padding-bottom:10px; text-align:center;">${titre}</h3>
+        <div style="margin-top:20px;">`;
 
     items.forEach(item => {
-        const statut = item.getAttribute('data-statut') || "En cours d'acquisition";
-        const desc = item.getAttribute('data-desc') || "Compétence développée durant la formation.";
+        const niveau = item.getAttribute('data-level') || 50;
+        const statut = item.getAttribute('data-statut') || "En cours";
+        const desc = item.getAttribute('data-desc') || "Compétence acquise en formation.";
         
+        let texteNiveau = "Débutant";
+        if(niveau > 40) texteNiveau = "Intermédiaire";
+        if(niveau > 75) texteNiveau = "Maîtrisé";
+
         htmlContenu += `
-            <div style="margin-bottom: 20px; padding: 10px; background: #fff; border-radius:10px; border-left: 4px solid var(--color-accent);">
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <strong style="font-size:1.1rem;">${item.childNodes[0].textContent}</strong>
-                    <span style="font-size:0.7rem; padding:3px 8px; background:var(--color-light); border-radius:15px; font-weight:bold;">${statut}</span>
+            <div style="margin-bottom: 20px; padding: 15px; background: #f9f9f9; border-radius:10px; border-left: 5px solid #BDA18A;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
+                    <strong>${item.childNodes[0].textContent}</strong>
+                    <span style="font-size:0.8rem; font-weight:bold; color:#BDA18A;">${texteNiveau}</span>
                 </div>
-                <p style="font-size:0.85rem; color:#666; margin-top:5px;">${desc}</p>
+                <div style="background:#eee; height:8px; border-radius:4px; overflow:hidden; margin-bottom:8px;">
+                    <div style="width:${niveau}%; height:100%; background:#BDA18A;"></div>
+                </div>
+                <p style="font-size:0.85rem; color:#666;">${desc}</p>
             </div>`;
     });
 
     htmlContenu += `</div>`;
-    
-    document.getElementById("modal-corps").innerHTML = htmlContenu;
-    document.getElementById("modal-competence").style.display = "block";
+    modalCorps.innerHTML = htmlContenu;
+    modal.style.display = "block";
 }
 
-/* Graphique*/
-/* --- PARTIE GRAPHIQUE CORRIGÉE --- */
-document.addEventListener('DOMContentLoaded', function() {
-    const canvasElement = document.getElementById('monGraphique');
-    
-    // On vérifie si le canvas existe bien dans le HTML
-    if (!canvasElement) return; 
+// Un seul écouteur pour les cartes
+document.querySelectorAll('.carte-comp').forEach(carte => {
+    carte.style.cursor = "pointer";
+    carte.addEventListener('click', () => {
+        const titre = carte.querySelector('h3').innerText;
+        const icone = carte.querySelector('.icone-cat').innerText;
+        const items = carte.querySelectorAll('li');
+        genererModale(titre, icone, items);
+    });
+});
 
-    const ctx = canvasElement.getContext('2d');
+if(btnFermer) btnFermer.onclick = () => modal.style.display = "none";
+window.onclick = (e) => { if(e.target == modal) modal.style.display = "none"; };
 
-    // Tes données pour l'affichage au clic
-    const dataExpliquee = [
-        { 
-            title: "Systèmes & Virtualisation", 
-            text: "Administration avancée de Windows Server (AD/GPO), Linux Debian, et gestion d'environnements virtualisés sous VMware et Proxmox." 
-        },
-        { 
-            title: "Réseaux & Infrastructures", 
-            text: "Conception d'architectures Cisco (VLANs, Routage inter-VLAN), protocoles de routage OSPF et gestion des services critiques DNS/DHCP." 
-        },
-        { 
-            title: "Cybersécurité", 
-            text: "Protection périmétrique via pare-feu PfSense/Fortinet, mise en œuvre de tunnels VPN IPsec/OpenVPN et analyse de trames Wireshark." 
-        },
-        { 
-            title: "Support & Veille", 
-            text: "Gestion de parc et ticketing via GLPI, assistance aux utilisateurs, rédaction de documentations techniques et veille technologique constante." 
-        }
+/* ==========================================
+   3. GRAPHIQUE (CHART.JS)
+   ========================================== */
+document.addEventListener('DOMContentLoaded', () => {
+    const canvasGraph = document.getElementById('monGraphique');
+    if (!canvasGraph) return;
+
+    const dataExplieguee = [
+        { title: "Systèmes & Virtualisation", text: "Windows Server, Linux, VMware, Proxmox." },
+        { title: "Réseaux & Infrastructures", text: "Cisco, VLAN, Routage, DNS/DHCP." },
+        { title: "Cybersécurité", text: "PfSense, VPN, Wireshark, Fortinet." },
+        { title: "Support & Veille", text: "GLPI, Documentation, Veille technologique." }
     ];
 
-    // Création du graphique
-    const monGraphique = new Chart(ctx, {
+    const monGraphique = new Chart(canvasGraph.getContext('2d'), {
         type: 'doughnut',
         data: {
-            labels: ['Systèmes & Virtualisation', 'Réseaux & Infra', 'Cybersécurité', 'Support & Veille'],
+            labels: ['Systèmes', 'Réseaux', 'Sécurité', 'Support'],
             datasets: [{
                 data: [35, 30, 20, 15],
                 backgroundColor: ['#BDA18A', '#3498db', '#e74c3c', '#2ecc71'],
-                hoverOffset: 30,
-                borderWidth: 2,
-                borderColor: '#ffffff'
+                hoverOffset: 20
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: true,
-                    position: 'bottom',
-                    labels: { font: { size: 14, weight: 'bold' }, padding: 20 }
-                }
-            },
             onClick: (evt, activeElements) => {
                 if (activeElements.length > 0) {
-                    const index = activeElements[0].index;
-                    const info = dataExpliquee[index];
-
-                    const titreElem = document.getElementById('details-titre');
-                    const texteElem = document.getElementById('details-texte');
-                    const boxElem = document.getElementById('details-graph');
-
-                    if (titreElem && texteElem && boxElem) {
-                        boxElem.style.opacity = 0;
-                        setTimeout(() => {
-                            titreElem.innerText = info.title;
-                            texteElem.innerText = info.text;
-                            titreElem.style.color = monGraphique.data.datasets[0].backgroundColor[index];
-                            boxElem.style.opacity = 1;
-                        }, 200);
-                    }
+                    const idx = activeElements[0].index;
+                    document.getElementById('details-titre').innerText = dataExplieguee[idx].title;
+                    document.getElementById('details-texte').innerText = dataExplieguee[idx].text;
                 }
             }
         }
     });
 });
 
-
-
-// Gestion du bouton retour en haut
+/* ==========================================
+   4. OUTILS (RETOUR EN HAUT & SCHÉMA)
+   ========================================== */
 const backToTopBtn = document.getElementById("backToTop");
-
-window.onscroll = function() {
-    // Si on descend de plus de 300px, on montre le bouton
-    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-        backToTopBtn.style.display = "block";
-    } else {
-        backToTopBtn.style.display = "none";
-    }
-};
-
-// Quand on clique, on remonte tout en haut en douceur
-backToTopBtn.onclick = function() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-};
-
-
-document.getElementById('schema-img').addEventListener('click', function() {
-    const titre = "Architecture Réseau Détaillée";
-    const contenu = `<img src="${this.src}" style="width:100%; border-radius:10px;">
-                     <p style="margin-top:15px; color:#333;">Cette topologie illustre une infrastructure multi-sites avec VPN IPsec et redondance des services critiques.</p>`;
-    
-    // On réutilise ta fonction générerModale ou ouvrirModale
-    genererModale(titre, "📊", []); 
-    // Note : Ajuste selon ta fonction actuelle pour injecter l'image dans le corps.
-    document.getElementById("modal-corps").innerHTML = contenu;
+window.addEventListener('scroll', () => {
+    if (backToTopBtn) backToTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
 });
 
-
+const schemaImg = document.getElementById('schema-img');
+if (schemaImg) {
+    schemaImg.addEventListener('click', function() {
+        modalCorps.innerHTML = `<img src="${this.src}" style="width:100%; border-radius:10px;">
+                                <p style="margin-top:15px;">Architecture réseau multi-sites.</p>`;
+        modal.style.display = "block";
+    });
+}
