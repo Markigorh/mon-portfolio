@@ -173,50 +173,46 @@ function genererModale(titre, icone, items) {
 }
 
 /* Graphique*/
+/* --- PARTIE GRAPHIQUE CORRIGÉE --- */
 document.addEventListener('DOMContentLoaded', function() {
     const canvasElement = document.getElementById('monGraphique');
-    if (!canvasElement) return;
+    
+    // On vérifie si le canvas existe bien dans le HTML
+    if (!canvasElement) return; 
 
     const ctx = canvasElement.getContext('2d');
 
-    const dataExplieguee = [
-       
-    { 
-        title: "Systèmes & Virtualisation", 
-        text: "Administration avancée de Windows Server (AD/GPO), Linux Debian, et gestion d'environnements virtualisés sous VMware et Proxmox." 
-    },
-    { 
-        title: "Réseaux & Infrastructures", 
-        text: "Conception d'architectures Cisco (VLANs, Routage inter-VLAN), protocoles de routage OSPF et gestion des services critiques DNS/DHCP." 
-    },
-    { 
-        title: "Cybersécurité", 
-        text: "Protection périmétrique via pare-feu PfSense/Fortinet, mise en œuvre de tunnels VPN IPsec/OpenVPN et analyse de trames Wireshark." 
-    },
-    { 
-        title: "Support & Veille", 
-        text: "Gestion de parc et ticketing via GLPI, assistance aux utilisateurs, rédaction de documentations techniques et veille technologique constante." 
-    }
-];
+    // Tes données pour l'affichage au clic
+    const dataExpliquee = [
+        { 
+            title: "Systèmes & Virtualisation", 
+            text: "Administration avancée de Windows Server (AD/GPO), Linux Debian, et gestion d'environnements virtualisés sous VMware et Proxmox." 
+        },
+        { 
+            title: "Réseaux & Infrastructures", 
+            text: "Conception d'architectures Cisco (VLANs, Routage inter-VLAN), protocoles de routage OSPF et gestion des services critiques DNS/DHCP." 
+        },
+        { 
+            title: "Cybersécurité", 
+            text: "Protection périmétrique via pare-feu PfSense/Fortinet, mise en œuvre de tunnels VPN IPsec/OpenVPN et analyse de trames Wireshark." 
+        },
+        { 
+            title: "Support & Veille", 
+            text: "Gestion de parc et ticketing via GLPI, assistance aux utilisateurs, rédaction de documentations techniques et veille technologique constante." 
+        }
+    ];
 
-   
-
-  const monGraphique = new Chart(ctx, {
+    // Création du graphique
+    const monGraphique = new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: ['Systèmes & Virtualisation',
-                    'Réseaux & Infra',
-                    'Cybersécurité',
-                    'Support & Veille'],
+            labels: ['Systèmes & Virtualisation', 'Réseaux & Infra', 'Cybersécurité', 'Support & Veille'],
             datasets: [{
                 data: [35, 30, 20, 15],
-                backgroundColor: [
-                                    '#BDA18A', '#3498db', '#e74c3c', '#2ecc71'  // Vert Support
-                                    ],
+                backgroundColor: ['#BDA18A', '#3498db', '#e74c3c', '#2ecc71'],
                 hoverOffset: 30,
                 borderWidth: 2,
                 borderColor: '#ffffff'
-            
             }]
         },
         options: {
@@ -229,34 +225,29 @@ document.addEventListener('DOMContentLoaded', function() {
                     labels: { font: { size: 14, weight: 'bold' }, padding: 20 }
                 }
             },
-            // GESTION DU CLIC
             onClick: (evt, activeElements) => {
                 if (activeElements.length > 0) {
-                    // On récupère l'index de la tranche cliquée
                     const index = activeElements[0].index;
-                    const info = dataExplieguee[index];
-
+                    const info = dataExpliquee[index];
 
                     const titreElem = document.getElementById('details-titre');
                     const texteElem = document.getElementById('details-texte');
                     const boxElem = document.getElementById('details-graph');
 
-                    // Animation de changement
-                    boxElem.style.opacity = 0;
-
-                    setTimeout(() => {
-                        titreElem.innerText = info.title;
-                        texteElem.innerText = info.text;
-                        titreElem.style.color = monGraphique.data.datasets[0].backgroundColor[index];
-                        boxElem.style.opacity = 1;
-                    }, 200);
+                    if (titreElem && texteElem && boxElem) {
+                        boxElem.style.opacity = 0;
+                        setTimeout(() => {
+                            titreElem.innerText = info.title;
+                            texteElem.innerText = info.text;
+                            titreElem.style.color = monGraphique.data.datasets[0].backgroundColor[index];
+                            boxElem.style.opacity = 1;
+                        }, 200);
+                    }
                 }
             }
         }
     });
 });
-
-
 
 
 
