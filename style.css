@@ -107,7 +107,6 @@ section {
     font-size: 1.5rem; /* Texte plus lisible */
     color: var(--color-dark); /* Utilise #BDA18A de ta palette */
     margin: 0;
-    max-width: 600px; /* Évite que le texte soit trop long sur une seule ligne */
 }
 
 /* Le bloc de la photo prend 40% de la largeur */
