@@ -145,10 +145,6 @@ document.addEventListener('DOMContentLoaded', () => {
 /* ==========================================
    4. OUTILS (RETOUR EN HAUT & SCHÉMA)
    ========================================== */
-const backToTopBtn = document.getElementById("backToTop");
-window.addEventListener('scroll', () => {
-    if (backToTopBtn) backToTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
-});
 
 const schemaImg = document.getElementById('schema-img');
 if (schemaImg) {
@@ -156,5 +152,25 @@ if (schemaImg) {
         modalCorps.innerHTML = `<img src="${this.src}" style="width:100%; border-radius:10px;">
                                 <p style="margin-top:15px;">Architecture réseau multi-sites.</p>`;
         modal.style.display = "block";
+    });
+}
+const backToTopBtn = document.getElementById("backToTop");
+
+if (backToTopBtn) {
+    // 1. Afficher/Cacher le bouton au scroll
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTopBtn.style.display = "block";
+        } else {
+            backToTopBtn.style.display = "none";
+        }
+    });
+
+    // 2. Action de remonter au clic
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth' // Remontée fluide
+        });
     });
 }
